@@ -1,61 +1,55 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:projec1/home.dart';
+import 'screens/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<SplashScreen> createState() => 
+  _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
-    starSplashScreen();
+    Timer(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
+      );
+    });
   }
-
-  starSplashScreen() async {
-    var duration = const Duration(seconds: 3);
-    return Timer(duration, (){
-     Navigator.of(context).pushReplacement(
-       MaterialPageRoute(builder: (context) => const Home()),
-     );
-   });
-  }
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: Stack(
         children: [
-          Center(
+          Positioned.fill(
             child: Image.asset(
-              'assets/splasscren.jpg',
-                width: 300.0,
-                height: 100.0,
-                fit: BoxFit.contain,
-              ),
+              'assets/splash.jpg',
+              fit: BoxFit.cover,
+            ),
           ),
-          SizedBox(
-            height: 24.0,
-          ),
-          Text(
-            'Unigal Apps',
-            style:TextStyle(
-              fontSize: 30.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+          Container(color: Colors.black.withOpacity(0.4)),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(Icons.school, size: 80, color: Colors.white),
+                SizedBox(height: 16),
+                Text(
+                  'UNIGAL APPS',
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+                SizedBox(height: 24),
+                CircularProgressIndicator(color: Colors.white),
+              ],
             ),
           ),
         ],
-      ),    
+      ),
     );
   }
 }

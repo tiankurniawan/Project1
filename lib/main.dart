@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:projec1/splashscreen.dart';
+import 'splashscreen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context){
+  const MyApp({super.key});
+
+    @override
+  Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Unigal Apps',
       debugShowCheckedModeBanner: false,
-     title: 'Aplikasi',
-     theme: ThemeData(
-      primarySwatch: Colors.deepPurple,
-     ),
-     home: SplashScreen(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const SplashScreen(),
     );
   }
 }
+
 
